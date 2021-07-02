@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  adonis-bot:
+    build:
+      context: .
+      dockerfile: docker/adonis.dockerfile
+    container_name: adonis_bot_dev
+    command: npm run dev
+    ports:
+      - "${PORT}:${PORT}"
+    volumes:
+      - ./backend:/var/app
+      - ./.env:/var/app/.env
+      - /var/app/node_modules
+    environment:
+      - TZ=Asia/Bangkok
