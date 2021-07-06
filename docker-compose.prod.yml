@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  adonis-bot:
+    build:
+      context: .
+      dockerfile: docker/adonis-prod.dockerfile
+    container_name: adonis_bot
+    command: npm run pm2-docker
+    ports:
+      - "${PORT}:${PORT}"
+    volumes:
+      - ./.env:/var/app/.env
+      - ./logs/:/var/app/logs/
+    environment:
+      - TZ=Asia/Bangkok
